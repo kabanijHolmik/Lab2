@@ -1,10 +1,17 @@
 ﻿#include <iostream>
 using namespace std;
 
+
 class Complex {
 public:
-	Complex() {}
+	Complex() { cout << "Element " << this << " created" << endl; }
+	Complex(const Complex& other) {
+		cout << "Element " << this << " created" << endl;
+		this->re = other.re;
+		this->im = other.im;
+	}
 	Complex(double re, double im) : re(re), im(im) {}
+	~Complex() { cout << "Element " << this << " deleted" << endl; }
 private:
 	double re;
 	double im;
@@ -56,6 +63,8 @@ int main()
 	setlocale(LC_ALL, "ru");
 	Complex* x = new Complex(1, 2);
 	Complex* y = new Complex(2, 1);
+	Complex* clone = new Complex(*x);
+	clone->Print(clone);
 	cout << "x = ";
 	x->Print(x);
 	cout << "y = ";
@@ -68,5 +77,6 @@ int main()
 	result.Mul(x, y);
 	cout << "Результат деления:";
 	result.Div(x, y);
+	delete clone;
 	return 0;
 }
