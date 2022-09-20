@@ -16,6 +16,13 @@ private:
 	double re;
 	double im;
 public:
+	friend Complex& operator+(Complex& x, Complex& y) {
+		Complex* sum = new Complex();
+		sum->re = x.re + y.re;
+		sum->im = x.im + y.im;
+		return *sum;
+	}
+
 	void Init(double re, double im) {
 		this->re = re;
 		this->im = im;
@@ -63,6 +70,9 @@ int main()
 	setlocale(LC_ALL, "ru");
 	Complex* x = new Complex(1, 2);
 	Complex* y = new Complex(2, 1);
+	Complex* sum = new Complex();
+	*sum = *x + *y;
+	sum->Print(sum);
 	Complex* clone = new Complex(*x);
 	clone->Print(clone);
 	cout << "x = ";
