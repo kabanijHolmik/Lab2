@@ -4,14 +4,13 @@ using namespace std;
 
 class Complex {
 public:
-	Complex() { cout << "Element " << this << " created" << endl; }
+	Complex() { }
 	Complex(const Complex& other) {
-		cout << "Element " << this << " created" << endl;
 		this->re = other.re;
 		this->im = other.im;
 	}
 	Complex(double re, double im) : re(re), im(im) {}
-	~Complex() { cout << "Element " << this << " deleted" << endl; }
+	~Complex() { /*cout << "Element " << this << " deleted" << endl;*/ }
 private:
 	double re;
 	double im;
@@ -22,16 +21,24 @@ public:
 		tmp.im = this->im + x.im;
 		return tmp;
 	}
+	Complex operator=(const Complex& x) {
+		this->re = x.re;
+		this->im = x.im;
+		return *this;
+	}
 	void push() {
-		cout << this->re << this->im;
+		cout << this->re << this->im << endl;
 	}
 };
 
 int main()
 {
 	setlocale(LC_ALL, "ru");
-	Complex t(1,2), tm, x(2,1);
-	tm = t + x;
+	Complex t(1,2), x(2, 1);
+	Complex tm;
+	tm = x + t;
+	tm.push();
+	tm = x;
 	tm.push();
 	return 0;
 }
