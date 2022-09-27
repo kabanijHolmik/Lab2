@@ -32,6 +32,12 @@ public:
 		tmp.im = this->im - x.im;
 		return tmp;
 	}
+	Complex operator*(const Complex& x) {
+		Complex tmp;
+		tmp.re = this->re * x.re - this->im * x.im;
+		tmp.im = this->re * x.im + this->im * x.re;
+		return tmp;
+	}
 	void push() {
 		if (this->im < 0) cout << this->re << this->im << "i" << endl;
 		else cout << this->re << "+" << this->im << "i" << endl;
@@ -47,7 +53,9 @@ int main()
 	tm.push();
 	tm = x;
 	tm.push();
-	tm = tm - x;
+	tm = tm - t;
+	tm.push();
+	tm = t * x;
 	tm.push();
 	return 0;
 }
