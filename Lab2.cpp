@@ -27,7 +27,8 @@ public:
 		return *this;
 	}
 	void push() {
-		cout << this->re << this->im << endl;
+		if (this->im < 0) cout << this->re << this->im << "i" << endl;
+		else cout << this->re << "+" << this->im << "i" << endl;
 	}
 };
 
